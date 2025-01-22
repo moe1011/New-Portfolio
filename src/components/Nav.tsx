@@ -12,9 +12,9 @@ export default function Nav() {
     }
 
   return (
-    <div className="fixed left-1/2 transform -translate-x-1/2 w-full bottom-10">
+    <div className="fixed left-1/2 transform -translate-x-1/2 w-full bottom-10 ">
       <div className="flex justify-around items-center">
-        <div className="bg-gray-500/70 backdrop-blur-sm w-fit h-16 rounded-full flex items-center font-semibold text-sm text-white shadow-lg">
+        <div className="bg-gray-500/70 backdrop-blur-sm w-fit h-16 rounded-full flex items-center font-semibold text-sm md:text-lg xl:text-xl 2xl:text-2xl text-white shadow-lg">
           {NavButton("PROJECTS", "rounded-l-full")}
           {NavButton("EXPERIENCE")}
           {NavButton("HOBBIES")}
