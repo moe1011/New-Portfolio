@@ -7,6 +7,6 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('tailwindcss-motion'), require('tailwindcss-intersect'), require("@designbycode/tailwindcss-text-shadow"),], 
 }
 
