@@ -18,43 +18,47 @@ const Home = () => {
   };
 
   return (
-    <div className="relative overflow-hidden">
-      <div className="w-full h-[140vh] sm:h-[130vh] bg-gradient-to-b from-gray-900 from-45% sm:from-55% md:from-55% lg:from-55% to-rose-900 absolute"></div>
-
-      <div className="relative z-20 p-10">
+    <div className="overflow-hidden">
+      {/* Hero Section */}
+      <div className="relative w-full h-screen pl-10 pt-10 bg-gradient-to-b from-gray-900 to-rose-900 from-90%">
         <Nav executeScroll={executeScroll} />
-        <h1 className="-motion-translate-y-in-[300%] motion-duration-1000 bg-gradient-to-b from-rose-500 from-80%  to-pink-500 text-5xl sm:text-6xl text-transparent bg-clip-text">
+        <h1 className="bg-gradient-to-b from-rose-500 to-pink-500 text-5xl sm:text-6xl text-transparent bg-clip-text
+        -motion-translate-y-in-[300%] motion-duration-1000 ">
           HELLO, I'M MOHAMMED ABDULLA
         </h1>
       </div>
 
-      {/* Sections */}
-      <div className="flex flex-col items-center w-full">
-        <div
-          ref={sections.projects}
-          className="relative z-10 w-[200%] sm:w-[170%] md:w-[150%] lg:w-[130%] h-fit bg-rose-900 rounded-[50%] rounded-b-none mt-[50vh] md:mt-[55vh] lg:mt-[60vh] pb-10"
-        >
-          <h2 className="text-white text-4xl sm:text-5xl md:text-6xl text-center mt-[12rem] mr-[45vw] sm:mr-[55vw] intersect:motion-preset-fade-lg">
-            PROJECTS
-          </h2>
-          <Projects />
-        </div>
+      {/* Projects Section */}
+      <div
+        ref={sections.projects}
+        className="w-full h-fit pb-20 pt-10 px-20 bg-gradient-to-b from-rose-900 from-[97%] to-gray-800"
+      >
+        <h2 className="text-white text-4xl sm:text-5xl md:text-6xl opacity-0 intersect:motion-opacity-out-100 motion-duration-1000 ease-in">
+          PROJECTS
+        </h2>
+        <Projects />
       </div>
+
+      {/* Experience Section */}
       <div
         ref={sections.experience}
-        className="w-full h-screen bg-gray-800 flex items-center justify-center"
+        className="w-full h-screen bg-gradient-to-b from-gray-800 via-gray-700 via-90% to-gray-700 flex items-center justify-center"
       >
         <h2 className="text-white text-4xl">Experience Section</h2>
       </div>
+
+      {/* Hobbies Section */}
       <div
         ref={sections.hobbies}
-        className="w-full h-screen bg-gray-700 flex items-center justify-center"
+        className="w-full h-screen bg-gradient-to-b from-gray-700 via-gray-600 via-90% to-gray-600 flex items-center justify-center"
       >
         <h2 className="text-white text-4xl">Hobbies Section</h2>
       </div>
+
+      {/* Contact Section */}
       <div
         ref={sections.contact}
-        className="w-full h-screen bg-gray-600 flex items-center justify-center"
+        className="w-full h-screen bg-gradient-to-b from-gray-600 via-black via-90% to-black flex items-center justify-center"
       >
         <h2 className="text-white text-4xl">Contact Section</h2>
       </div>
