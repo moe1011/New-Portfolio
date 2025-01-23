@@ -1,24 +1,39 @@
 import React from "react";
 import { TbMail } from "react-icons/tb";
 
-export default function Nav() {
-    function NavButton(children: React.ReactNode, tw?: string){
-        return (
-            <button className={`${tw} hover:bg-gray-700 h-16 px-4 ease-in-out transition-all duration-500 
-          text-shadow-rose-300 hover:text-shadow hover:-text-shadow-x-3 hover:text-shadow-y-1 hover:text-shadow-blur-1`}>
-            {children}
-          </button>
-        )
-    }
+export default function Nav({
+  executeScroll,
+}: {
+  executeScroll: (section: string) => void;
+}) {
+  const buttons = [
+    { label: "PROJECTS", section: "projects", extraClass: "rounded-l-full" },
+    { label: "EXPERIENCE", section: "experience" },
+    { label: "HOBBIES", section: "hobbies" },
+    {
+      label: <TbMail className="text-2xl md:text-3xl duration-500" />,
+      section: "contact",
+      extraClass: "rounded-r-full hover:text-rose-400",
+    },
+  ];
 
   return (
-    <div className="fixed left-1/2 transform -translate-x-1/2 w-full bottom-10 ">
+    <div className="fixed left-1/2 transform -translate-x-1/2 w-full bottom-10">
       <div className="flex justify-around items-center">
-        <div className="bg-gray-500/70 backdrop-blur-sm w-fit h-16 rounded-full flex items-center font-semibold text-sm md:text-lg xl:text-xl 2xl:text-2xl text-white shadow-lg">
-          {NavButton("PROJECTS", "rounded-l-full")}
-          {NavButton("EXPERIENCE")}
-          {NavButton("HOBBIES")}
-          {NavButton(<TbMail className="text-2xl" />, "rounded-r-full")}
+        <div
+          className="bg-gray-500/70 backdrop-blur-sm w-fit h-16 rounded-full flex items-center font-semibold 
+          text-sm md:text-md xl:text-lg 2xl:text-xl text-white shadow-lg"
+        >
+          {buttons.map(({ label, section, extraClass = "" }, idx) => (
+            <button
+              key={idx}
+              onClick={() => executeScroll(section)}
+              className={`hover:bg-gray-700 h-16 px-4 ease-in-out transition-all duration-500 
+                text-shadow-rose-400 hover:text-shadow hover:-text-shadow-x-3 hover:text-shadow-y-1 hover:text-shadow-blur-1 ${extraClass}`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
     </div>
