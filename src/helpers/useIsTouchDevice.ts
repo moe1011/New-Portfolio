@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 const useIsTouchdevice = (): boolean => {
-  const [isTouchdevice, setIsTouchdevice] = useState<boolean>()
+  const [isTouchdevice, setIsTouchdevice] = useState<boolean>(false); // Default to `false`
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsTouchdevice(window.matchMedia('(hover: none)').matches)
+    if (typeof window !== "undefined") {
+      setIsTouchdevice(window.matchMedia("(hover: none)").matches);
     }
-  }, [])
+  }, []);
 
-  return isTouchdevice
-}
+  return isTouchdevice; // Always returns a boolean
+};
 
-export default useIsTouchdevice
+export default useIsTouchdevice;
