@@ -11,7 +11,7 @@ export default function Nav({
     { label: "EXPERIENCE", section: "experience" },
     { label: "HOBBIES", section: "hobbies" },
     {
-      label: <TbMail className="text-xl md:text-3xl duration-500" />,
+      label: <TbMail className="text-xl md:text-3xl" />,
       section: "contact",
       extraClass: "rounded-r-full hover:text-rose-400",
     },
@@ -22,13 +22,13 @@ export default function Nav({
       <div className="flex justify-around items-center">
         <div
           className="bg-gray-500/70 backdrop-blur-sm w-fit h-16 rounded-full flex items-center font-semibold 
-          text-xs md:text-base xl:text-lg 2xl:text-xl text-white shadow-lg"
-        >
+          text-xs md:text-base xl:text-lg 2xl:text-xl text-white shadow-gray-300 shadow drop-shadow-lg"
+        > 
           {buttons.map(({ label, section, extraClass = "" }, idx) => (
             <button
               key={idx}
               onClick={() => executeScroll(section)}
-              className={`hover:bg-gray-700 h-16 px-4 ease-in-out duration-500 
+              className={`hover:bg-gray-700 h-16 px-3 md:px-4 ease-in-out duration-500 
                 text-shadow-rose-400 hover:text-shadow hover:-text-shadow-x-3 hover:text-shadow-y-1 hover:text-shadow-blur-1 ${extraClass}`}
             >
               {label}
