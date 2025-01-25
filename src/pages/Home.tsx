@@ -35,7 +35,7 @@ const Home = () => {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 to-rose-900 from-80% sm:from-85%">
+      <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 to-rose-900 from-75% sm:from-85%">
         <Nav executeScroll={executeScroll} />
         <h1
           className="bg-gradient-to-b from-rose-500 to-pink-500 from-80% text-5xl sm:text-6xl text-transparent bg-clip-text
@@ -43,14 +43,14 @@ const Home = () => {
         >
           HELLO, I'M MOHAMMED ABDULLA
         </h1>
-        <div className="flex flex-col justify-center align-bottom h-screen">
+        <div className="flex flex-col justify-end h-screen pb-[25rem] sm:pb-[25rem] md:pb-[20rem]">
           <Player
             lottieRef={(instance) => {
               setScrollAnimState({ lottie: instance }); // the lottie instance is returned in the argument of this prop. set it to your local state
             }}
             loop
             src={scrollAnimation}
-            className="w-[10rem] h-[10rem] sm:w-[15rem] sm:h-[15rem] md:w-[25rem] md:h-[25rem] "
+            className="w-[10rem] h-[10rem] sm:w-[15rem] sm:h-[15rem] md:w-[20rem] md:h-[20rem]"
             ref={player}
           ></Player>
         </div>
