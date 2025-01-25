@@ -18,7 +18,7 @@ export default function Nav({
   ];
 
   return (
-    <div className="fixed left-1/2 transform -translate-x-1/2 w-full bottom-10 z-50">
+    <div className="fixed left-1/2 transform -translate-x-1/2 w-full bottom-20 sm:bottom-14 z-50">
       <div className="flex justify-around items-center">
         <div
           className="bg-gray-500/70 backdrop-blur-sm w-fit h-16 rounded-full flex items-center font-semibold 
