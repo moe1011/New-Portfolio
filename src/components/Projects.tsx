@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import { PiCode } from "react-icons/pi";
-import sanjiImage from "../assets/images/sanji_redsuit.jpg"; // Import the image
+import { useScrollAnimations } from "../hooks/useScrollAnimations";
+import sanjiImage from "../assets/images/sanji_redsuit.jpg";
 
 interface ProjectProps {
   name: string;
   image: string;
   description: string;
   tools: string[];
+  website?: string;
+  github?: string;
 }
 
 function ProjectCard({
@@ -16,33 +19,44 @@ function ProjectCard({
   tools,
   website,
   github,
-}: ProjectProps & { website?: string; github?: string }) {
-  const Wrapper = website ? "a" : "div"; // Dynamically decide the wrapper type
+}: ProjectProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Animate each card individually; we slide in from left with xOffset: -200
+  useScrollAnimations([cardRef], {
+    once: false,      // Revert if scrolling back up
+    start: "top 90%", // Start animating when top of card hits 80% of viewport
+    end: "bottom 90%",
+    scrub: 0.5,       // Smoothly ties animation to scroll
+    xOffset: -200,    // Slide in from 200px left
+    duration: 1,
+    markers: false,   // Set to true for debugging
+  });
+
+  // Conditionally wrap the image card in a link if website is provided
+  const Wrapper = website ? "a" : "div";
 
   return (
-    <div className="flex flex-col items-center space-y-3">
+    <div ref={cardRef} className="flex flex-col items-center space-y-3">
       {/* Image Card */}
       <Wrapper
         {...(website
           ? { href: website, target: "_blank", rel: "noopener noreferrer" }
           : {})}
-        className="relative group bg-gray-700
-        w-[20rem] h-[20rem] sm:w-[25rem] sm:h-[25rem] lg:w-[40rem] lg:h-[40rem] outline outline-[3.5px] outline-gray-400 hover:outline-emerald-400 duration-500
-        rounded-lg shadow-md shadow-gray-800 overflow-hidden"
+        className="relative group bg-slate-700
+          w-[20rem] h-[20rem] sm:w-[25rem] sm:h-[25rem] lg:w-[40rem] lg:h-[40rem] 
+          outline outline-[3.5px] outline-slate-400 hover:outline-teal-400 duration-500
+          rounded-lg shadow-md shadow-slate-800 overflow-hidden"
       >
-        {/* Image with Zoom and Move Animation */}
+        {/* Image with Zoom/Move */}
         <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-[1500ms] ease-in-out group-hover:scale-110 group-hover:translate-y-5 group-hover:translate-x-3"
+          className="w-full h-full bg-cover bg-center transition-transform duration-[1500ms] ease-in-out 
+            group-hover:scale-110 group-hover:translate-y-5 group-hover:translate-x-3"
           style={{ backgroundImage: `url(${image})` }}
         ></div>
 
-        {/* Base Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-lg pointer-events-none"></div>
-
-        {/* Hover Darkening Effect */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 rounded-lg pointer-events-none"></div>
-
-        {/* Project Name */}
         <div className="absolute inset-0 flex items-end justify-center">
           <h3 className="text-lg sm:text-xl font-bold text-white text-center mb-3">
             {name}
@@ -52,29 +66,28 @@ function ProjectCard({
 
       {/* Bottom Section */}
       <div
-        className="flex flex-col items-center w-full h-fit p-2 bg-gradient-to-b from-gray-600 to-gray-800 rounded-lg shadow-md shadow-gray-800
-      outline outline-[3.5px] outline-gray-400 hover:outline-indigo-300 duration-500"
+        className="flex flex-col items-center w-full h-fit p-2 bg-gradient-to-b from-slate-600 to-slate-800 
+          rounded-lg shadow-md shadow-slate-800 outline outline-[3.5px] outline-slate-400 
+          hover:outline-teal-300 duration-500"
       >
-        {/* Description */}
-        <p className="text-sm sm:text-lg text-gray-100 text-center w-[90%] sm:w-[80%] lg:w-[70%]">
+        <p className="text-sm sm:text-lg text-slate-100 text-center w-[90%] sm:w-[80%] lg:w-[70%]">
           {description}
         </p>
 
-        {/* Tools Used */}
         <div className="flex flex-wrap justify-center gap-2 mt-2">
           {tools.map((tool, index) => (
             <span
               key={index}
-              className="px-2 py-1 text-xs sm:text-base font-semibold text-gray-100 bg-gradient-to-b 
-            from-slate-600 from-70% to-slate-700 rounded-full shadow shadow-gray-500 drop-shadow-md"
+              className="px-2 py-1 text-xs sm:text-base font-semibold text-slate-100 
+                  bg-gradient-to-b from-slate-600 from-70% to-slate-700 
+                  rounded-full shadow shadow-slate-500 drop-shadow-md"
             >
               {tool}
             </span>
           ))}
         </div>
 
-        {/* Links */}
-        <div className="flex gap-4 mt-4 ">
+        <div className="flex gap-4 mt-4">
           {github && (
             <a
               href={github}
@@ -82,8 +95,10 @@ function ProjectCard({
               rel="noopener noreferrer"
               className="text-black text-2xl sm:text-5xl rounded-lg p-1"
             >
-              <div className="bg-gradient-to-b from-indigo-200 from-40% to-emerald-300 rounded-full h-[2rem] w-[2rem] sm:h-[4rem] sm:w-[4rem] flex items-center justify-center">
-                <PiCode/>
+              <div className="bg-gradient-to-b from-teal-200 from-40% to-teal-300 
+                    rounded-full h-[2rem] w-[2rem] sm:h-[4rem] sm:w-[4rem] flex items-center justify-center"
+              >
+                <PiCode />
               </div>
             </a>
           )}
@@ -97,15 +112,15 @@ export default function Projects() {
   const projects = [
     {
       name: "Portfolio Website",
-      image: sanjiImage, // Imported image
+      image: sanjiImage,
       description: "A portfolio website showcasing my skills and projects.",
       tools: ["React", "TailwindCSS", "TypeScript"],
-      website: "https://portfolio.com", // Add website link
-      github: "https://github.com/username/portfolio", // Add GitHub link
+      website: "https://portfolio.com",
+      github: "https://github.com/username/portfolio",
     },
     {
       name: "E-commerce Platform",
-      image: "https://via.placeholder.com/300", // External image URL
+      image: "https://via.placeholder.com/300",
       description:
         "An e-commerce platform with cart functionality and payment integration.",
       tools: ["Next.js", "Node.js", "MongoDB"],
@@ -114,11 +129,10 @@ export default function Projects() {
     },
     {
       name: "Blog CMS",
-      image: "https://via.placeholder.com/300", // External image URL
+      image: "https://via.placeholder.com/300",
       description:
         "A content management system for creating and managing blog posts.",
       tools: ["Gatsby", "GraphQL", "Netlify"],
-      website: "",
       github: "https://github.com/username/blogcms",
     },
   ];
