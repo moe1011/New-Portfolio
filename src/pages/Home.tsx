@@ -4,7 +4,7 @@ import Projects from "../components/Projects";
 import { Player } from "@lottiefiles/react-lottie-player";
 import scrollAnimation from "../assets/scrollAnimation.json";
 import { AnimationItem } from "lottie-web";
-import { useScrollAnimations } from "../hooks/useScrollAnimations";
+// import { useScrollAnimations } from "../hooks/useScrollAnimations";
 
 export default function Home() {
   // Refs for each section
@@ -14,19 +14,19 @@ export default function Home() {
   const contactRef = useRef<HTMLDivElement>(null);
 
   // Animate each big section
-  useScrollAnimations(
-    [projectsRef, experienceRef, hobbiesRef, contactRef],
-    {
-      once: false,
-      start: "top 80%",
-      end: "bottom 20%",
-      scrub: false, 
-      // The 'sections' themselves can fade up slightly if you want:
-      yOffset: 50,
-      duration: 1,
-      markers: false, // set to true for debugging
-    }
-  );
+  // useScrollAnimations(
+  //   [projectsRef, experienceRef, hobbiesRef, contactRef],
+  //   {
+  //     once: false,
+  //     start: "top 80%",
+  //     end: "bottom 20%",
+  //     scrub: false, 
+  //     // The 'sections' themselves can fade up slightly if you want:
+  //     yOffset: 50,
+  //     duration: 1,
+  //     markers: false, // set to true for debugging
+  //   }
+  // );
 
   const sections = {
     projects: projectsRef,
@@ -61,7 +61,7 @@ export default function Home() {
         <Nav executeScroll={executeScroll} />
 
         <h1
-          className="bg-gradient-to-b from-rose-700 to-rose-500 from-80%
+          className="bg-gradient-to-b from-rose-500 to-rose-700 from-70%
             text-5xl sm:text-6xl text-transparent bg-clip-text
             pl-10 pt-10"
         >
@@ -85,11 +85,8 @@ export default function Home() {
       <div
         ref={projectsRef}
         // Ensure each section is tall enough to avoid overlap
-        className="w-full min-h-screen py-10 px-5 bg-gradient-to-b from-rose-900 from-[97%] to-slate-800"
+        className="w-full min-h-screen py-10 bg-gradient-to-b from-rose-900 from-[97%] to-slate-800"
       >
-        <h2 className="text-slate-100 text-4xl sm:text-5xl md:text-6xl sm:pl-5 mb-10">
-          PROJECTS
-        </h2>
         <Projects />
       </div>
 

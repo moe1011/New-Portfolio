@@ -14,9 +14,9 @@ function App() {
     <ObserverProvider>
       {!isTouchDevice && ( // Only render cursor if not a touch device
         <AnimatedCursor
-          innerSize={30}
-          outerSize={30}
-          innerScale={0.4}
+          innerSize={35}
+          outerSize={35}
+          innerScale={0.5}
           outerScale={1}
           trailingSpeed={1}
           innerStyle={{
