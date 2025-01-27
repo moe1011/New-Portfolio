@@ -81,7 +81,7 @@ export default function Projects() {
 
   return (
     <div ref={sectionRef} className="px-5 pt-5 pb-10 overflow-hidden">
-      <h2 className="text-slate-100 text-4xl sm:text-5xl md:text-4xl mb-10 text-center">
+      <h2 className="text-slate-100 text-4xl sm:text-5xl md:text-4xl mb-10 text-center underline underline-offset-8 tracking-widest">
         PROJECTS
       </h2>
 

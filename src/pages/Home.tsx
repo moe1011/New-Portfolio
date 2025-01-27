@@ -20,7 +20,7 @@ export default function Home() {
   //     once: false,
   //     start: "top 80%",
   //     end: "bottom 20%",
-  //     scrub: false, 
+  //     scrub: false,
   //     // The 'sections' themselves can fade up slightly if you want:
   //     yOffset: 50,
   //     duration: 1,
@@ -51,33 +51,54 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       scrollAnimState.lottie?.play();
-    }, 1500);
+    }, 1700);
   }, [scrollAnimState]);
 
   return (
     <div>
       {/* HERO SECTION */}
-      <div className="relative w-full h-screen bg-gradient-to-b from-slate-900 to-rose-900 from-75% sm:from-85%">
+      <div className="relative w-full h-screen bg-gradient-to-b from-slate-900 to-rose-900 from-75% sm:from-85% overflow-hidden">
         <Nav executeScroll={executeScroll} />
 
-        <h1
-          className="bg-gradient-to-b from-rose-500 to-rose-700 from-70%
-            text-5xl sm:text-6xl text-transparent bg-clip-text
-            pl-10 pt-10"
-        >
-          HELLO, I'M MOHAMMED ABDULLA
-        </h1>
+        {/* Main Layout */}
+        <div className="relative w-full h-screen flex flex-col items-center">
+          {/* Name at the Top */}
+          <h1 className="text-[2rem] sm:text-[3rem] 2xl:text-[4rem] pt-14 pb-10 text-white motion-preset-slide-down-md -mt-10 text-center 
+          tracking-widest">
+            MOHAMMED ABDULLA
+          </h1>
 
-        <div className="flex flex-col justify-end h-full pb-[30rem] sm:pb-[20rem]">
-          <Player
-            lottieRef={(instance) => {
-              setScrollAnimState({ lottie: instance });
-            }}
-            loop
-            src={scrollAnimation}
-            className="w-[10rem] h-[10rem] sm:w-[15rem] sm:h-[15rem] md:w-[20rem] md:h-[20rem] mx-auto"
-            ref={player}
-          />
+          {/* Main Content (Text and Player Overlapping) */}
+          <div className="relative flex flex-col items-center leading-[4rem] sm:leading-[9rem] 2xl:leading-[11rem]">
+            {/* SOFTWARE Text */}
+            <h1
+              className="bg-gradient-to-b from-rose-500 to-rose-600 from-60% text-transparent bg-clip-text 
+      text-[3.5rem] sm:text-[7rem] md:text-[9rem] 2xl:text-[12rem] z-20 pr-[10vw] motion-preset-slide-right-md motion-delay-[600ms]"
+            >
+              SOFTWARE
+            </h1>
+
+            {/* DEVELOPER Text */}
+            <h1
+              className="bg-gradient-to-b from-rose-600 to-rose-700 from-40% text-transparent bg-clip-text 
+      text-[3.5rem] sm:text-[7rem] md:text-[9rem] 2xl:text-[12rem] z-0 pl-[10vw] motion-preset-slide-left-md motion-delay-[1100ms]"
+            >
+              DEVELOPER
+            </h1>
+
+            {/* Player */}
+            <div className="relative mt-20 sm:mt-10 mb-20">
+              <Player
+                lottieRef={(instance) => {
+                  setScrollAnimState({ lottie: instance });
+                }}
+                loop
+                src={scrollAnimation}
+                className="w-[10rem] h-[10rem] sm:w-[12rem] sm:h-[12rem] 2xl:w-[15rem] 2xl:h-[15rem]"
+                ref={player}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
