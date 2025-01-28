@@ -63,7 +63,7 @@ export default function Home() {
         {/* Main Layout */}
         <div className="relative w-full h-screen flex flex-col items-center">
           {/* Name at the Top */}
-          <h1 className="text-[2rem] sm:text-[3rem] 2xl:text-[4rem] pt-14 pb-10 text-white motion-preset-slide-down-md -mt-10 text-center 
+          <h1 className="text-[1.5rem] sm:text-[3rem] 2xl:text-[4rem] pt-20 sm:pt-20 pb-10 text-white motion-preset-slide-down-md -mt-10 text-center 
           tracking-widest">
             MOHAMMED ABDULLA
           </h1>
@@ -87,7 +87,7 @@ export default function Home() {
             </h1>
 
             {/* Player */}
-            <div className="relative mt-20 sm:mt-10 mb-20">
+            <div className="relative mt-20 sm:mt-10 2xl:mt-32 mb-20">
               <Player
                 lottieRef={(instance) => {
                   setScrollAnimState({ lottie: instance });

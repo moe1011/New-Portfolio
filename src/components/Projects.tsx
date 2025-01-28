@@ -47,37 +47,45 @@ export default function Projects() {
 
   useEffect(() => {
     if (!sectionRef.current || !trackRef.current) return;
-
+  
     const trackEl = trackRef.current;
     const totalWidth = trackEl.scrollWidth;
     const viewportWidth = window.innerWidth;
-
+  
     const scrollDistance = totalWidth + viewportWidth;
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: `+=${scrollDistance}`,
-        pin: true,
-        scrub: 1,
-        markers: false,
-      },
-    });
-
-    tl.fromTo(
+  
+    // Animation for scrolling the projects BEFORE reaching the section
+    gsap.fromTo(
       trackEl,
-      { x: viewportWidth },
+      { x: viewportWidth  }, // Start from slightly visible
       {
-        x: -totalWidth - 100,
+        x: -totalWidth - 100, // Scroll to fully off-screen left
         ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 40%", // Start BEFORE reaching the section
+          end: `+=${scrollDistance}`,
+          scrub: 1,
+          markers: false, // Debugging markers (set to true to visualize)
+        },
       }
     );
-
+  
+    // Separate ScrollTrigger for PINNING the Projects section
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "top top", // Pin when it reaches the top
+      end: `+=${scrollDistance - 700}`,
+      pin: true, // Pin the section in place
+      anticipatePin: 1, // Smooth pinning
+      markers: false,
+    });
+  
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
+  
 
   return (
     <div ref={sectionRef} className="px-5 pt-5 pb-10 overflow-hidden">
@@ -88,7 +96,7 @@ export default function Projects() {
       {/* HORIZONTAL TRACK */}
       <div
         ref={trackRef}
-        className="flex gap-40 items-center h-[40rem] sm:h-[50rem] lg:h-[35rem] 2xl:h-[45rem] w-[90rem] sm:w-[140rem] lg:w-[120rem] 2xl:w-[130rem]"
+        className="flex gap-40 items-center h-[38rem] sm:h-[50rem] lg:h-[35rem] 2xl:h-[45rem] w-[85rem] sm:w-[140rem] lg:w-[120rem] 2xl:w-[130rem]"
       >
         {projects.map((proj, i) => (
           <div
@@ -130,19 +138,20 @@ export default function Projects() {
             </a>
 
             {/* Bottom Info */}
-            <div className="pt-4 h-[50%] bg-gradient-to-b from-slate-600/70 from-50% to-slate-800/70 backdrop-blur-sm flex flex-col justify-start items-center">
+            <div className="relative h-[50%] bg-gradient-to-b from-slate-800 from-40% to-slate-900 backdrop-blur-sm flex flex-col justify-start items-center">
+              {/* <div className="absolute bg-gray-200/20 w-full h-full backdrop-blur-sm -z-10"></div> */}
               <p
-                className="text-slate-100 text-center text-sm sm:text-lg 2xl:text-xl mb-2 w-[90%] sm:w-[80%] break-words"
+                className="text-slate-100 text-left text-sm sm:text-lg 2xl:text-xl mb-2 w-[90%] sm:w-[80%] break-words px-4 sm:px-2 pt-4"
                 style={{ overflowWrap: "break-word" }}
               >
                 {proj.description}
               </p>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-3 mt-4">
                 {proj.tools.map((tool, idx) => (
                   <span
                     key={idx}
-                    className="px-2 py-1 text-xs sm:text-sm 2xl:text-lg font-semibold text-slate-100 bg-gradient-to-b from-slate-600 from-50% to-slate-700
-                      rounded-xl shadow shadow-slate-400 drop-shadow-md"
+                    className="px-2 py-1 text-xs sm:text-sm 2xl:text-lg font-semibold text-slate-100 outline outline-[2.4px] outline-rose-400/50
+                    hover:outline-rose-400 hover:text-white duration-500 rounded-xl shadow shadow-rose-500 drop-shadow-md"
                   >
                     {tool}
                   </span>
