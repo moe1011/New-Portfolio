@@ -5,7 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import { Route, Routes } from "react-router-dom";
 import AnimatedCursor from "react-animated-cursor";
 import ObserverProvider from "./components/ObserverProvider";
-import useIsTouchdevice from "./helpers/useIsTouchDevice";
+import useIsTouchdevice from "./hooks/useIsTouchDevice";
 
 function App() {
   const isTouchDevice = useIsTouchdevice() // Check if the device is touch-enabled
@@ -14,9 +14,9 @@ function App() {
     <ObserverProvider>
       {!isTouchDevice && ( // Only render cursor if not a touch device
         <AnimatedCursor
-          innerSize={30}
-          outerSize={30}
-          innerScale={0.4}
+          innerSize={35}
+          outerSize={35}
+          innerScale={0.5}
           outerScale={1}
           trailingSpeed={1}
           innerStyle={{
