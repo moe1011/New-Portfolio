@@ -2,8 +2,15 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PiCode, PiHandTapDuotone, PiCursorClickDuotone } from "react-icons/pi";
-import sanjiImage from "../assets/images/sanji_redsuit.jpg";
 import useIsTouchdevice from "../hooks/useIsTouchDevice";
+
+// Project Images
+import petconnectImage from "../assets/images/petconnect.png";
+import minerverseImage from "../assets/images/minerverse.png";
+import managesysImage from "../assets/images/managesys.png";
+import spaceshowcaseImage from "../assets/images/spaceshowcase.crop.png";
+import eightballImage from "../assets/images/8ball.png";
+import calculatorImage from "../assets/images/calculator.png";
 
 // Register the plugin once
 gsap.registerPlugin(ScrollTrigger);
@@ -19,45 +26,68 @@ export default function Projects() {
   // Sample projects
   const projects = [
     {
-      name: "Portfolio Website",
-      image: sanjiImage,
-      description: "A portfolio website showcasing my skills and projects.",
-      tools: ["React", "TailwindCSS", "TypeScript"],
-      website: "https://portfolio.com",
-      github: "https://github.com/username/portfolio",
+      name: "Pet Connect",
+      image: petconnectImage,
+      description: "A cross-platform social media app for pet owners to share photos, create profiles, and connect with other pet enthusiasts. Features include authentication, timeline feeds, and interactive posts.",
+      tools: ["React Native", "Apollo GraphQL", "Express", "MySQL", "TypeScript"],
+      website: "", // You'll add this
+      github: "https://github.com/FinalScript/pet-connect",
     },
     {
-      name: "E-commerce Platform",
-      image: "https://via.placeholder.com/300",
-      description:
-        "An e-commerce platform with cart functionality, payment integration, and seamless user experience. Designed to support modern e-commerce operations.",
-      tools: ["Next.js", "Node.js", "MongoDB"],
-      website: "https://ecommerce.com",
-      github: "https://github.com/username/ecommerce",
+      name: "MinerVerse",
+      image: minerverseImage,
+      description: "A blockchain-based web3 game where users can mint unique NFT miners using ETH and engage in a cookie-clicker style mining experience. Features MetaMask integration, smart contracts, and real-time mining mechanics.",
+      tools: ["Next.js", "TypeScript", "Solidity", "Web3.js", "MetaMask"],
+      website: "https://minerverse.vercel.app/",
+      github: "https://github.com/FinalScript/minerverse",
     },
     {
-      name: "Blog CMS",
-      image: "https://via.placeholder.com/300",
-      description:
-        "A content management system for creating and managing blog posts with markdown support and dynamic previews.",
-      tools: ["Gatsby", "GraphQL", "Netlify"],
-      github: "https://github.com/username/blogcms",
+      name: "Space Showcase",
+      image: spaceshowcaseImage,
+      description: "An engaging web app that displays NASA's astronomy pictures with AI-generated explanations and interactive animations, featuring OpenAI's GPT-4o and TTS integration.",
+      tools: ["React", "OpenAI API", "NASA API", "Tailwind CSS", "Vercel"],
+      website: "https://space-showcase.vercel.app/",
+      github: "https://github.com/moe1011/SpaceShowcase",
+    },
+    {
+      name: "Manage.sys",
+      image: managesysImage,
+      description: "A full-stack store management system that enables CRUD operations for store and employee data, featuring secure user authentication and a modern React frontend.",
+      tools: ["React", "Spring Boot", "PostgreSQL", "TypeScript", "Docker"],
+      website: "https://manage-sys.web.app",
+      github: "https://github.com/FinalScript/manage.sys",
+    },
+    {
+      name: "Magic 8 Ball",
+      image: eightballImage,
+      description: "An interactive Magic 8 Ball web application with hold-to-charge mechanics and smooth animations, providing fortune-telling entertainment.",
+      tools: ["React", "Tailwind CSS", "Rive"],
+      website: "https://moe1011.github.io/8Ball",
+      github: "https://github.com/moe1011/8Ball",
+    },
+    {
+      name: "Calculator App",
+      image: calculatorImage,
+      description: "A desktop calculator application with keyboard shortcuts, calculation history, and the ability to save calculations to a file.",
+      tools: ["React", "Electron", "Tailwind CSS", "MathJS"],
+      website: "", // You'll add this if available
+      github: "https://github.com/moe1011/CalculatorApp",
     },
   ];
 
   useEffect(() => {
     if (!sectionRef.current || !trackRef.current) return;
-  
+
     const trackEl = trackRef.current;
     const totalWidth = trackEl.scrollWidth;
     const viewportWidth = window.innerWidth;
-  
+
     const scrollDistance = totalWidth + viewportWidth;
-  
+
     // Animation for scrolling the projects BEFORE reaching the section
     gsap.fromTo(
       trackEl,
-      { x: viewportWidth  }, // Start from slightly visible
+      { x: viewportWidth }, // Start from slightly visible
       {
         x: -totalWidth - 100, // Scroll to fully off-screen left
         ease: "none",
@@ -70,7 +100,7 @@ export default function Projects() {
         },
       }
     );
-  
+
     // Separate ScrollTrigger for PINNING the Projects section
     ScrollTrigger.create({
       trigger: sectionRef.current,
@@ -80,12 +110,16 @@ export default function Projects() {
       anticipatePin: 1, // Smooth pinning
       markers: false,
     });
-  
+
+    ScrollTrigger.normalizeScroll(true);
+    ScrollTrigger.config({
+      ignoreMobileResize: true,
+    });
+
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
-  
 
   return (
     <div ref={sectionRef} className="px-5 pt-5 pb-10 overflow-hidden">
@@ -96,21 +130,21 @@ export default function Projects() {
       {/* HORIZONTAL TRACK */}
       <div
         ref={trackRef}
-        className="flex gap-40 items-center h-[38rem] sm:h-[50rem] lg:h-[35rem] 2xl:h-[45rem] w-[85rem] sm:w-[140rem] lg:w-[120rem] 2xl:w-[130rem]"
+        className="flex gap-24 items-center h-[32rem] sm:h-[35rem] lg:h-[35rem] 2xl:h-[45rem]"
       >
         {projects.map((proj, i) => (
           <div
             key={i}
-            className="group inline-block w-full h-full
+            className="group inline-block w-[20rem] sm:w-[25rem] lg:w-[25rem] 2xl:w-[35rem] h-full
               outline outline-[3px] outline-slate-400 hover:outline-teal-400 duration-300
-              rounded-lg shadow-md shadow-slate-800 overflow-hidden"
+              rounded-lg shadow-md shadow-slate-800 overflow-hidden flex-shrink-0"
           >
             {/* Image */}
             <a
-              href={proj.website || undefined} // Set `href` only if `proj.website` exists
-              target={proj.website ? "_blank" : undefined} // Open in a new tab if clickable
-              rel={proj.website ? "noopener noreferrer" : undefined} // Set rel only if clickable
-              className={`relative block h-[50%] w-full overflow-hidden ${
+              href={proj.website || undefined}
+              target={proj.website ? "_blank" : undefined}
+              rel={proj.website ? "noopener noreferrer" : undefined}
+              className={`relative block h-[55%] w-full overflow-hidden ${
                 proj.website ? "cursor-pointer" : "pointer-events-none"
               }`}
             >
@@ -119,8 +153,8 @@ export default function Projects() {
       duration-[1200ms] ease-in-out group-hover:scale-110 origin-center"
                 style={{ backgroundImage: `url(${proj.image})` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70  to-transparent pointer-events-none" />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 from-5% to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500 pointer-events-none" />
               <div className="absolute inset-0 flex items-end justify-center">
                 <h3 className="text-lg sm:text-xl font-bold text-white text-center mb-3">
                   {proj.name}
@@ -138,20 +172,16 @@ export default function Projects() {
             </a>
 
             {/* Bottom Info */}
-            <div className="relative h-[50%] bg-gradient-to-b from-slate-800 from-40% to-slate-900 backdrop-blur-sm flex flex-col justify-start items-center">
-              {/* <div className="absolute bg-gray-200/20 w-full h-full backdrop-blur-sm -z-10"></div> */}
-              <p
-                className="text-slate-100 text-left text-sm sm:text-lg 2xl:text-xl mb-2 w-[90%] sm:w-[80%] break-words px-4 sm:px-2 pt-4"
-                style={{ overflowWrap: "break-word" }}
-              >
+            <div className="relative h-[45%] bg-gradient-to-b from-slate-800 from-40% to-slate-900 backdrop-blur-sm flex flex-col justify-start items-center px-3 pt-3">
+              <p className="text-slate-100 text-left text-xs sm:text-sm lg:text-sm 2xl:text-lg mb-2 w-[90%] break-words">
                 {proj.description}
               </p>
-              <div className="flex flex-wrap justify-center gap-3 mt-4">
+              <div className="flex flex-wrap justify-center gap-1.5 mt-1">
                 {proj.tools.map((tool, idx) => (
                   <span
                     key={idx}
-                    className="px-2 py-1 text-xs sm:text-sm 2xl:text-lg font-semibold text-slate-100 outline outline-[2.4px] outline-rose-400/50
-                    hover:outline-rose-400 hover:text-white duration-500 rounded-xl shadow shadow-rose-500 drop-shadow-md"
+                    className="px-1.5 py-0.5 text-[10px] sm:text-xs lg:text-xs 2xl:text-sm font-semibold text-slate-100 outline outline-[1.5px] outline-rose-400/30
+                    hover:outline-rose-400/60 hover:text-white duration-500 rounded-lg shadow shadow-rose-400 drop-shadow-md"
                   >
                     {tool}
                   </span>
