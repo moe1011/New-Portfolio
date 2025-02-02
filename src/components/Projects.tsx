@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PiCode, PiHandTapDuotone, PiCursorClickDuotone } from "react-icons/pi";
 import useIsTouchdevice from "../hooks/useIsTouchDevice";
+import Bubbles from "./Bubbles";
 
 // Project Images
 import petconnectImage from "../assets/images/petconnect.png";
@@ -28,15 +29,23 @@ export default function Projects() {
     {
       name: "Pet Connect",
       image: petconnectImage,
-      description: "A cross-platform social media app for pet owners to share photos, create profiles, and connect with other pet enthusiasts. Features include authentication, timeline feeds, and interactive posts.",
-      tools: ["React Native", "Apollo GraphQL", "Express", "MySQL", "TypeScript"],
+      description:
+        "A cross-platform social media app for pet owners to share photos, create profiles, and connect with other pet enthusiasts. Features include authentication, timeline feeds, and interactive posts.",
+      tools: [
+        "React Native",
+        "Apollo GraphQL",
+        "Express",
+        "MySQL",
+        "TypeScript",
+      ],
       website: "", // You'll add this
       github: "https://github.com/FinalScript/pet-connect",
     },
     {
       name: "MinerVerse",
       image: minerverseImage,
-      description: "A blockchain-based web3 game where users can mint unique NFT miners using ETH and engage in a cookie-clicker style mining experience. Features MetaMask integration, smart contracts, and real-time mining mechanics.",
+      description:
+        "A blockchain-based web3 game where users can mint unique NFT miners using ETH and engage in a cookie-clicker style mining experience. Features MetaMask integration, smart contracts, and real-time mining mechanics.",
       tools: ["Next.js", "TypeScript", "Solidity", "Web3.js", "MetaMask"],
       website: "https://minerverse.vercel.app/",
       github: "https://github.com/FinalScript/minerverse",
@@ -44,7 +53,8 @@ export default function Projects() {
     {
       name: "Space Showcase",
       image: spaceshowcaseImage,
-      description: "An engaging web app that displays NASA's astronomy pictures with AI-generated explanations and interactive animations, featuring OpenAI's GPT-4o and TTS integration.",
+      description:
+        "An engaging web app that displays NASA's astronomy pictures with AI-generated explanations and interactive animations, featuring OpenAI's GPT-4o and TTS integration.",
       tools: ["React", "OpenAI API", "NASA API", "Tailwind CSS", "Vercel"],
       website: "https://space-showcase.vercel.app/",
       github: "https://github.com/moe1011/SpaceShowcase",
@@ -52,7 +62,8 @@ export default function Projects() {
     {
       name: "Manage.sys",
       image: managesysImage,
-      description: "A full-stack store management system that enables CRUD operations for store and employee data, featuring secure user authentication and a modern React frontend.",
+      description:
+        "A full-stack store management system that enables CRUD operations for store and employee data, featuring secure user authentication and a modern React frontend.",
       tools: ["React", "Spring Boot", "PostgreSQL", "TypeScript", "Docker"],
       website: "https://manage-sys.web.app",
       github: "https://github.com/FinalScript/manage.sys",
@@ -60,7 +71,8 @@ export default function Projects() {
     {
       name: "Magic 8 Ball",
       image: eightballImage,
-      description: "An interactive Magic 8 Ball web application with hold-to-charge mechanics and smooth animations, providing fortune-telling entertainment.",
+      description:
+        "An interactive Magic 8 Ball web application with hold-to-charge mechanics and smooth animations, providing fortune-telling entertainment.",
       tools: ["React", "Tailwind CSS", "Rive"],
       website: "https://moe1011.github.io/8Ball",
       github: "https://github.com/moe1011/8Ball",
@@ -68,7 +80,8 @@ export default function Projects() {
     {
       name: "Calculator App",
       image: calculatorImage,
-      description: "A desktop calculator application with keyboard shortcuts, calculation history, and the ability to save calculations to a file.",
+      description:
+        "A desktop calculator application with keyboard shortcuts, calculation history, and the ability to save calculations to a file.",
       tools: ["React", "Electron", "Tailwind CSS", "MathJS"],
       website: "", // You'll add this if available
       github: "https://github.com/moe1011/CalculatorApp",
@@ -123,6 +136,12 @@ export default function Projects() {
 
   return (
     <div ref={sectionRef} className="px-5 pt-5 pb-10 overflow-hidden">
+      <Bubbles
+        opacity={1.0}
+        size={0.6}
+        count={10} // Try with 6 bubbles
+      />
+
       <h2 className="text-slate-100 text-4xl sm:text-5xl md:text-4xl mb-10 text-center underline underline-offset-8 tracking-widest">
         PROJECTS
       </h2>
@@ -136,8 +155,8 @@ export default function Projects() {
           <div
             key={i}
             className="group inline-block w-[20rem] sm:w-[25rem] lg:w-[25rem] 2xl:w-[35rem] h-full
-              outline outline-[3px] outline-slate-400 hover:outline-teal-400 duration-300
-              rounded-lg shadow-md shadow-slate-800 overflow-hidden flex-shrink-0"
+                outline outline-[3px] outline-slate-400 hover:outline-teal-400 duration-300
+                rounded-lg shadow-md shadow-slate-800 overflow-hidden flex-shrink-0"
           >
             {/* Image */}
             <a
@@ -181,7 +200,7 @@ export default function Projects() {
                   <span
                     key={idx}
                     className="px-1.5 py-0.5 text-[10px] sm:text-xs lg:text-xs 2xl:text-sm font-semibold text-slate-100 outline outline-[1.5px] outline-rose-400/30
-                    hover:outline-rose-400/60 hover:text-white duration-500 rounded-lg shadow shadow-rose-400 drop-shadow-md"
+                      hover:outline-rose-400/60 hover:text-white duration-500 rounded-lg shadow shadow-rose-400 drop-shadow-md"
                   >
                     {tool}
                   </span>
@@ -197,8 +216,8 @@ export default function Projects() {
                   >
                     <div
                       className="relative bg-gradient-to-b from-teal-200 from-50% to-teal-400
-                            rounded-full h-[2rem] w-[2rem] sm:h-[3rem] sm:w-[3rem] 
-                            flex items-center justify-center hover:scale-110 duration-500 transition-all ease-in-out"
+                              rounded-full h-[2rem] w-[2rem] sm:h-[3rem] sm:w-[3rem] 
+                              flex items-center justify-center hover:scale-110 duration-500 transition-all ease-in-out"
                     ></div>
                     <div className="absolute inset-0 flex items-center justify-center text-lg sm:text-3xl pointer-events-none">
                       <PiCode />

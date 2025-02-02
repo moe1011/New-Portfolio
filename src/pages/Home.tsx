@@ -157,8 +157,7 @@ export default function Home() {
       {/* PROJECTS SECTION */}
       <div
         ref={projectsRef}
-        // Ensure each section is tall enough to avoid overlap
-        className="w-full min-h-screen py-10 bg-gradient-to-b from-rose-900 from-[97%] to-slate-800"
+        className="w-full min-h-screen py-10 bg-gradient-to-b from-rose-900 from-90% to-slate-800"
       >
         <Projects />
       </div>
